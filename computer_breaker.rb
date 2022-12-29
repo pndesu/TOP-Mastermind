@@ -2,9 +2,7 @@ class ComputerBreaker
     include GameLogic
     attr_reader :code, :guess, :guessesList, :correctCount, :nearCount
     def createCode()
-        print "Enter a sequence: "
-        @code = gets.chomp
-        @code = @code.split("").map(&:to_i)
+        @code = playerInput().split("").map(&:to_i)
         createGuessesList()
         computerGuess()
     end
@@ -22,6 +20,7 @@ class ComputerBreaker
         end
         @guessesList = @guessesList.shuffle()
     end
+    
     def computerGuess()
         printAttempt()
         p @guess = guessesList[0]

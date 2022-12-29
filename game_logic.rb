@@ -1,4 +1,12 @@
 module GameLogic
+    def playerInput()
+        print "Enter a sequence: "
+        input = gets.chomp
+        return input if (input.match(/^[1-6]{4}$/))
+        puts warningMessage('codeError')
+        playerInput()
+    end
+
     def compare(master, guess)
         @correctCount = @nearCount = 0
         masterTrack = [0,1,2,3]
@@ -35,6 +43,7 @@ module GameLogic
             puts "Game over!"
             return
         else
+            puts warningMessage('answerError')
             continuePlaying()
         end
     end
@@ -43,5 +52,13 @@ module GameLogic
     def printAttempt()
         puts "Attempt \##{@@n}"
         @@n += 1
+    end
+
+    def warningMessage(message)
+        {
+            'answerError' => 'Invalid input! Please enter [y/n] to continue',
+            'codeError' => 'Invalid input! Please enter a 4-digit number with numbers from 1-6',
+            'modeError' => 'Invalid input! Please enter [1-2] to continue'
+        }[message]
     end
 end

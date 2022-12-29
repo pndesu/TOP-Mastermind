@@ -1,4 +1,6 @@
+require_relative 'game_logic.rb'
 class Game
+    include GameLogic
     def play
         loop do
             puts "Press 1 to be the code BREAKER"
@@ -7,6 +9,7 @@ class Game
             if (@input.match(/^[1-2]$/))
                 break
             end
+            puts warningMessage('modeError')
         end
         codeBreaker() if (@input == '1')
         codeMaker() if (@input == '2')

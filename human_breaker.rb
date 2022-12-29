@@ -8,9 +8,7 @@ class HumanBreaker
     
     def playerGuess()
         printAttempt()
-        print "Enter a sequence: "
-        @answer = gets.chomp
-        @answer = @answer.split("").map(&:to_i)
+        @answer = playerInput().split("").map(&:to_i)
         compare(randomNumbers, @answer)
         showClues(correctCount, nearCount)
     end
@@ -24,5 +22,4 @@ class HumanBreaker
             playerGuess()
         end
     end
-
 end
